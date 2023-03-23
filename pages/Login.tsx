@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import supabase from '@/lib/initSupabase'
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
 export default function Login() {
-
+    const supabaseClient = useSupabaseClient()
     const [email, setEmail] = useState('')
     const [isWaitingForEmail, setIsWaitingForEmail] = useState(false)
 
@@ -17,7 +17,7 @@ export default function Login() {
             return alert('Please enter a valid email address')
         }
 
-        const {data, error} = await supabase.auth.signInWithOtp({ email })
+        const {data, error} = await supabaseClient.auth.signInWithOtp({ email })
         if (error) {
             setIsWaitingForEmail(false)
             return alert(error.message)
