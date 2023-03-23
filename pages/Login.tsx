@@ -17,7 +17,8 @@ export default function Login() {
             return alert('Please enter a valid email address')
         }
 
-        const {data, error} = await supabaseClient.auth.signInWithOtp({ email })
+        const {data, error} = await supabaseClient.auth.signInWithOtp({ email, options: { emailRedirectTo: process.env.NEXT_PUBLIC_APP_URL } })
+        
         if (error) {
             setIsWaitingForEmail(false)
             return alert(error.message)
@@ -26,6 +27,10 @@ export default function Login() {
         setIsWaitingForEmail(true)
         console.log(data)
     }
+
+    // How can i use supabase to store an avatar image for the user?
+
+
 
     return (
         <div className="flex justify-center items-center h-screen">
