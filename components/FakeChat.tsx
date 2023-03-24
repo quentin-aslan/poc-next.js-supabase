@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import PhoneChat from "@/components/PhoneChat";
 import {Message} from "@/types/Message";
 
-export default function Chat () {
+export default function FakeChat () {
     const generateRandomSentence = () => {
         const words = ['Hi', 'Hello', 'How are you?', 'I am fine', 'What are you doing?', 'I am working']
         return words[Math.floor(Math.random() * words.length)]
@@ -27,10 +27,15 @@ export default function Chat () {
 
     const handleSendMessage = async (message: string) => {
         if (message.length === 0) return
-        setMessages([...messages, { message, isMe: true }])
+        setMessages([...messages, ...[
+            { message, isMe: true },
+            { message: generateRandomSentence(), isMe: false }
+        ]
+    ])
+
     }
 
     return (
-        <PhoneChat title={"Fake Chat"} messages={messages} onSendMessage={handleSendMessage} />
+        <PhoneChat title={"FakeChat"} messages={messages} onSendMessage={handleSendMessage} />
     )
 }
