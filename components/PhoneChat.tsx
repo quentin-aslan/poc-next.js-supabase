@@ -7,11 +7,11 @@ type Props = {
 }
 
 export default function PhoneChat (props: Props) {
-    const [message, setMessage] = useState('')
+    const [input, setInput] = useState('')
 
     const handleSendMessage = async () => {
-        props.onSendMessage(message)
-        setMessage('')
+        props.onSendMessage(input)
+        setInput('')
     }
 
     return (
@@ -31,7 +31,7 @@ export default function PhoneChat (props: Props) {
                             <div className="artboard phone-1 mt-5 mb-5 flex flex-col-reverse space-y-4 space-y-reverse overflow-auto">
                                 <div className="flex space-x-2 justify-center items-center">
                                     <div className="form-control">
-                                        <input value={message} onChange={e => setMessage(e.target.value)} onKeyDown={e => (e.key === 'Enter') ? handleSendMessage() : undefined} type="text" placeholder="Type a message" className="input input-bordered" />
+                                        <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => (e.key === 'Enter') ? handleSendMessage() : undefined} type="text" placeholder="Type a message" className="input input-bordered" />
                                     </div>
                                     <button onClick={handleSendMessage} className="btn btn-primary">Send</button>
                                 </div>
