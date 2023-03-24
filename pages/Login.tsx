@@ -25,12 +25,7 @@ export default function Login() {
         }
 
         setIsWaitingForEmail(true)
-        console.log(data)
     }
-
-    // How can i use supabase to store an avatar image for the user?
-
-
 
     return (
         <div className="flex justify-center items-center h-screen">
@@ -41,7 +36,7 @@ export default function Login() {
                     <>
                         <div className="card-title text-white">Fill in your email, we'll send you a magic link.</div>
                         <div className="form-control w-full max-w-xs">
-                            <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="your@email.com" className="input input-bordered w-full max-w-xs" />
+                            <input onKeyDown={e => (e.key === 'Enter') ? handleLogin() : undefined} value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="your@email.com" className="input input-bordered w-full max-w-xs" />
                         </div>
                         <div className="card-actions justify-end">
                             <button onClick={handleLogin} className="btn btn-primary">Send me a link</button>
